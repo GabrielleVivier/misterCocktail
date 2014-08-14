@@ -1,0 +1,11 @@
+<div class="page-header">
+<h1> <%= @cocktail.name %></h1>
+<h4><%= link_to "Get back to the Cocktails' list", cocktails_path %></h4>
+</div>
+
+  <ul class="list-group">
+  <% @cocktail.doses.each do |dose|%>
+      <li class="list-group-item"><%= dose.amount%> <%= dose.ingredient.name %></li>
+    <% end %>
+  </ul>
+
