@@ -1,12 +1,23 @@
 <div class="page-header">
-<h1> <%= @cocktail.name %></h1>
-<h4><%= link_to "Get back to the Cocktails' list", cocktails_path %></h4>
+<h1> <%= @cocktail.name %> </h1>
+<h4><%= link_to 'Delete', @cocktail, method: :delete%> / <%= link_to "Update", edit_cocktail_path(@cocktail)%> </h4>
+<p><%= link_to "Get back to the Cocktails' list", cocktails_path %></p>
 </div>
+
+<div class="notice">
+  <% if flash[:notice] %>
+  <%= flash[:notice] %></p>
+<% end %>
+</div> <br>
 
 <div class="col-xs-6 col-sm-6 col-md-6 col-md-6">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">Description</h3>
+      <h3 class="panel-title">
+        <div class="text-left">
+          <p>Description</p>
+        </div>
+      </h3>
      </div>
     <div class="panel-body">
       <%= @cocktail.description %>
@@ -15,17 +26,24 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">
-        <p class="text-left">Composition</p>
-        <p class="text-right"><h4><%= link_to "Update", cocktail_doses_path(@cocktail) %></h4></p>
+        <div class="text-left">
+          <p>Composition</p> <button class="text-right btn btn-link" id="add-element">Add a element to the composition</button>
+        </div>
       </h3>
     </div>
     <div class="panel-body">
       <ul class="list-group">
         <% @cocktail.doses.each do |dose|%>
-      <li class="list-group-item"><%= dose.amount%> <%= dose.ingredient.name %></li>
+      <li class="list-group-item"> <p class="text-left"><%= dose.amount%> <%= dose.ingredient.name %> </p> <p class="text-right"><%= link_to 'Delete', [dose.cocktail, dose], method: :delete%> / <%= link_to "Update", edit_dose_path(dose)%></p></li>
       <% end %>
     </ul>
     </div>
   </div>
 </div>
+
+<div class="col-xs-6 col-sm-6 col-md-6 col-md-6 comment well js-display-none" id="form-add-element">
+    <%= render 'doses/form' %>
+  </div>
+</div>
+
 

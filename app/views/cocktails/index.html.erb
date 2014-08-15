@@ -3,7 +3,11 @@
   <h4><%= link_to "Add a cocktail to the list", new_cocktail_path %></h4>
 </div>
 
-<ul class="list-group">
+<div class="notice">
+  <%= flash[:notice] %>
+</div> <br>
+
+<ul class="list-group text-center">
 <% @cocktails.each do |cocktail|%>
   <li class="list-group-item">
     <%= link_to cocktail.name, cocktail_path(cocktail)%>
