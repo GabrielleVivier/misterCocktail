@@ -12,9 +12,8 @@ $(function() {
 
   $("#add-ingredient").click( function(e) {
     console.debug($(this).data('url'));
-    $.getScript($(this).data('url'), function(data) {
-      console.debug(coucou);
-      modal_form.modal('show');
+    $.get($(this).data('url'), function(data) {
+      console.debug('coucou');
     });
   });
 });
